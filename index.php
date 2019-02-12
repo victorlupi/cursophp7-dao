@@ -26,16 +26,16 @@ echo $aluno;
 */
 
 
-
+/*
 //Alterar um usuário
 $usuario = new Usuario();
 $usuario->loadById(10);
 $usuario->update("professor", "!@#$%¨&*");
 echo $usuario;
+*/
 
-
-//$usuario = new Usuario();
-//$usuario->loadById(7);
-//$usuario->delete();
-//echo $usuario;
+$usuario = new Usuario();
+$usuario->loadById(11);
+$usuario->delete();
+echo $usuario;
  ?>
