@@ -81,23 +81,27 @@ class Usuario
 			throw new Exception("Login e/ou senha inválidos.");
 		}
 	}
-	public function setData($data){
+	public function setData($data)
+	{
 		$this->setId_usuario($data['id_usuario']);
 		$this->setDes_login($data['des_login']);
 		$this->setDes_senha($data['des_senha']);
 		$this->setDt_cadastro(new DateTime($data['dt_cadastro']));
 	}
-	public function insert(){
+	public function insert()
+	{
 		$sql = new Sql();
 		$results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
 			':LOGIN'=>$this->getDes_login(),
 			':PASSWORD'=>$this->getDes_senha()
 		));
-		if (count($results) > 0) {
+		if (count($results) > 0) 
+		{
 			$this->setData($results[0]);
 		}
 	}
-	public function update($login, $password){
+	public function update($login, $password)
+	{
 		$this->setDes_login($login);
 		$this->setDes_senha($password);
 		$sql = new Sql();
@@ -107,7 +111,8 @@ class Usuario
 			':ID'=>$this->getId_usuario()
 		));
 	}
-	public function delete(){
+	public function delete()
+	{
 		$sql = new Sql();
 		$sql->query("DELETE FROM tb_usuarios WHERE id_usuario = :ID", array(
 			':ID'=>$this->getId_usuario()
@@ -121,7 +126,8 @@ class Usuario
 		$this->setDes_login($login);
 		$this->setDes_senha($password);
 	}
-	public function __toString(){
+	public function __toString()
+	{
 		return json_encode(array(
 			"id_usuario"=>$this->getId_usuario(),
 			"des_login"=>$this->getDes_login(),
