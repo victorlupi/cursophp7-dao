@@ -35,7 +35,8 @@ class Usuario
 		$this->des_senha = $value;
 	}
 
-	public function getDt_cadastro(){
+	public function getDt_cadastro()
+	{
 		return $this->dt_cadastro;
 	}
 
@@ -44,26 +45,31 @@ class Usuario
 		$this->dt_cadastro = $value;
 	}
 	
-	public function loadById($id){
+	public function loadById($id)
+	{
 		$sql = new Sql();
 		$results = $sql->select("SELECT * FROM tb_usuarios WHERE id_usuario = :ID", array(
 			":ID"=>$id
 		));
-		if (count($results) > 0) {
+		if (count($results) > 0) 
+		{
 			$this->setData($results[0]);
 		}
 	}
-	public static function getList(){
+	public static function getList()
+	{
 		$sql = new Sql();
 		return $sql->select("SELECT * FROM tb_usuarios ORDER BY des_login;");
 	}
-	public static function search($login){
+	public static function search($login)
+	{
 		$sql = new Sql();
 		return $sql->select("SELECT * FROM tb_usuarios WHERE des_login LIKE :SEARCH ORDER BY des_login", array(
 			':SEARCH'=>"%".$login."%"
 		));
 	}
-	public function login($login, $password){
+	public function login($login, $password)
+	{
 		$sql = new Sql();
 		$results = $sql->select("SELECT * FROM tb_usuarios WHERE des_login = :LOGIN AND des_senha = :PASSWORD", array(
 			":LOGIN"=>$login,
